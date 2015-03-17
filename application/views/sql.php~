@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Welcome to BeTRaGMap</title>
+
+	<style type="text/css">
+
+	::selection{ background-color: #E13300; color: white; }
+	::moz-selection{ background-color: #E13300; color: white; }
+	::webkit-selection{ background-color: #E13300; color: white; }
+
+	body {
+		background-color: #fff;
+		margin: 40px;
+		font: 13px/20px normal Helvetica, Arial, sans-serif;
+		color: #4F5155;
+	}
+        p {
+                font-family: Consolas, Monaco, Courier New, Courier, monospace;
+		font-size: 10px;
+		
+		color: #333333;
+		display: block;
+		
+        }
+	a {
+		color: #003399;
+		background-color: transparent;
+		font-weight: normal;
+	}
+
+	h1 {
+		color: #444;
+		background-color: transparent;
+		border-bottom: 1px solid #D0D0D0;
+		font-size: 19px;
+		font-weight: normal;
+		margin: 0 0 14px 0;
+		padding: 14px 15px 10px 15px;
+	}
+
+	code {
+		font-family: Consolas, Monaco, Courier New, Courier, monospace;
+		font-size: 12px;
+		background-color: #f9f9f9;
+		border: 1px solid #D0D0D0;
+		color: #002166;
+		display: block;
+		margin: 14px 0 14px 0;
+		padding: 12px 10px 12px 10px;
+	}
+
+	#body{
+		margin: 0 15px 0 15px;
+	}
+	
+	p.footer{
+		text-align: right;
+		font-size: 11px;
+		border-top: 1px solid #D0D0D0;
+		line-height: 32px;
+		padding: 0 10px 0 10px;
+		margin: 20px 0 0 0;
+	}
+	.cell{
+	        font-family: Consolas, Monaco, Courier New, Courier, monospace;
+		font-size: 10px;
+		background-color: #EEEEEE;
+		border: 1px solid #D0D0D0;
+		color: #002166;
+		display: block;
+		margin: 5px 0 5px 0;
+		padding: 12px 10px 12px 10px; 
+	}
+	#container{
+		margin: 10px;
+		border: 1px solid #D0D0D0;
+		-webkit-box-shadow: 0 0 8px #D0D0D0;
+	}
+	</style>
+</head>
+<body>
+
+<div id="container">
+<!--<h1>Load csv files:</h1>
+
+	<div id="body">
+        <div class="cell">
+		        <?php
+		        echo form_open('/spacehive/importCSVFiles');
+		        echo '<label for="import">Import CSV files for CIC and Charities</label><br><label for="import">Files should be in data folder</label><br><br><br>';
+		        echo form_submit('mysubmit','Import CSVs');
+		        echo form_close();
+		
+		        ?>
+		</div></div>-->
+	<h1>SQL Code to run:</h1>
+
+	<div id="body">
+	        <div class="cell">
+	                <p>In order to run the application please make sure that the <i>database.php</i> located in BT file contains the correct connection details to the MySQL database.</p> 
+	        </div>	
+	        <div class="cell">
+		      <p>
+    CREATE TABLE IF NOT EXISTS `backer` (
+</p>
+
+<p>
+    `ID` int(11) NOT NULL AUTO_INCREMENT,
+</p>
+
+<p>
+    `NAME` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `URL` varchar(100) NOT NULL,
+</p>
+
+<p>
+    PRIMARY KEY (`ID`)
+</p>
+
+<p>
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+</p>
+
+
+
+<p>
+    CREATE TABLE IF NOT EXISTS `backergroup` (
+</p>
+
+<p>
+    `ID` int(11) NOT NULL AUTO_INCREMENT,
+</p>
+
+<p>
+    `BACKERID` int(11) NOT NULL,
+</p>
+
+<p>
+    `GROUPID` int(11) NOT NULL,
+</p>
+
+<p>
+    PRIMARY KEY (`ID`)
+</p>
+
+<p>
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+</p>
+
+
+
+<p>
+    CREATE TABLE IF NOT EXISTS `category` (
+</p>
+
+<p>
+    `ID` int(11) NOT NULL AUTO_INCREMENT,
+</p>
+
+<p>
+    `NAME` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `DESCRIPTION` varchar(100) NOT NULL,
+</p>
+
+<p>
+    PRIMARY KEY (`ID`)
+</p>
+
+<p>
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+</p>
+
+
+
+<p>
+    CREATE TABLE IF NOT EXISTS `categorygroup` (
+</p>
+
+<p>
+    `ID` int(11) NOT NULL AUTO_INCREMENT,
+</p>
+
+<p>
+    `CATEGORYID` int(11) NOT NULL,
+</p>
+
+<p>
+    `GROUPID` int(11) NOT NULL,
+</p>
+
+<p>
+    PRIMARY KEY (`ID`)
+</p>
+
+<p>
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+</p>
+
+
+
+<p>
+    CREATE TABLE IF NOT EXISTS `group` (
+</p>
+
+<p>
+    `ID` int(11) NOT NULL AUTO_INCREMENT,
+</p>
+
+<p>
+    `URL` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `NAME` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `BACKERS` int(11) NOT NULL,
+</p>
+
+<p>
+    `DAYS` int(11) NOT NULL,
+</p>
+
+<p>
+    `RAISED` int(11) NOT NULL,
+</p>
+
+<p>
+    `TARGET` int(11) NOT NULL,
+</p>
+
+<p>
+    `FUNDEDDATE` date NOT NULL,
+</p>
+
+<p>
+    `DESCRIPTION` longtext NOT NULL,
+</p>
+
+<p>
+    PRIMARY KEY (`ID`)
+</p>
+
+<p>
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+</p>
+
+
+
+<p>
+    CREATE TABLE IF NOT EXISTS `spacehive` (
+</p>
+
+<p>
+    `ID` int(11) NOT NULL AUTO_INCREMENT,
+</p>
+
+<p>
+    `URL` varchar(200) NOT NULL,
+</p>
+
+<p>
+    `NAME` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `PROMOTER` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `BACKERS` int(11) NOT NULL,
+</p>
+
+<p>
+    `GOAL` int(11) NOT NULL,
+</p>
+
+<p>
+    `RAISED` int(11) NOT NULL,
+</p>
+
+<p>
+    `FDATE` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `DESCRIPTION` longtext NOT NULL,
+</p>
+
+<p>
+    `PDESCRIPTION` longtext NOT NULL,
+</p>
+
+<p>
+    PRIMARY KEY (`ID`)
+</p>
+
+<p>
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+</p>
+
+
+
+<p>
+    CREATE TABLE IF NOT EXISTS `cic` (
+</p>
+
+<p>
+    `ID` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `NAME` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `STATUS` varchar(100) NOT NULL,
+</p>
+
+<p>
+    PRIMARY KEY (`ID`)
+</p>
+
+<p>
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
+</p>
+
+
+<p>
+    CREATE TABLE IF NOT EXISTS `charity` (
+</p>
+
+<p>
+    `ID` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `NAME` varchar(100) NOT NULL,
+</p>
+
+<p>
+    `STATUS` varchar(100) NOT NULL,
+</p>
+
+<p>
+    PRIMARY KEY (`ID`)
+</p>
+
+<p>
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
+</p>
+
+		</div>
+		
+	</div>
+
+	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
+</div>
+
+</body>
+</html>

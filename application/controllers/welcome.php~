@@ -1,0 +1,42 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Welcome extends CI_Controller {
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -  
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in 
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see http://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function index()
+	{
+		print_r('test');
+
+		$this->load->library('simple_html_dom');
+		$raw = curl_retrieve('http://adrianbaciuc.com');
+                //echo $raw;
+		$html_base = new simple_html_dom();
+		// Load HTML from a string
+		$html_base->load($raw); 
+		
+		$as = array ();
+		//print_r($raw);
+		print_r('test2');
+		$test = $html_base->find('a');
+		
+		$data['as'] = $test;
+		$this->load->view('welcome_message',$data);
+	}
+}
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */
