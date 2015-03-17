@@ -14,7 +14,13 @@ Application that crawls the crowdfunding platforms Crowdfunder and Spacehive and
 
 - Enter the correct connection details to your database in the database.php file located in MappingBTR/application/config/.
 
-- Create the necessary tables in your database to store the data collected from both crowdfunding platforms (the code to create the tables is provided below)*.
+- Create the necessary tables in your database to store the data collected from both crowdfunding platforms (the code to create the tables is provided on the app graphical interface).
+
+*To run the application:
+
+- Open a browser and type in the address bar the path of the application folder in your computer. When using XAMPP it would be something like: 'http://localhost/MappingBTR/index.php'.
+
+- Choose the right settings and click the button 'run' in either the Crowdfunder or the Spacehive crawler.
 
 *If the app failed to execute, try:
 
